@@ -229,7 +229,7 @@ switch mode
 		
        % ylim([-10,10]);
 
-       % xlim([start,ending]);
+        xlim([start,ending]);
        ylabel('Amplitude')
        xlabel('time (s)')
 		%----------------------Source Signal End
