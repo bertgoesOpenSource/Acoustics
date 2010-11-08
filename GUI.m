@@ -90,14 +90,14 @@ T=1/Rate; %sample time;
 
 Source_Rate = 1000;
 
-[foo1,foo2,foo3,foo4,foo5,foo6,foo7,foo8]=textread(...
-    'D:\Bert\Acoustics\Receivers\Receivers.txt',...
-    '%f %f %f %f %f %f %f %f'); %Read in 8 receivers' data
-	%Deal with offsets in MICs' Voltage
-	 foo1=foo1-2e-3;
-	 foo3=foo3+1e-3;
-	 foo6=foo6+2e-3;
-	 foo8=foo8+5e-3;
+% [foo1,foo2,foo3,foo4,foo5,foo6,foo7,foo8]=textread(...
+    % 'D:\Bert\Acoustics\Receivers\Receivers.txt',...
+    % '%f %f %f %f %f %f %f %f'); %Read in 8 receivers' data
+	%% Deal with offsets in MICs' Voltage
+	 % foo1=foo1-2e-3;
+	 % foo3=foo3+1e-3;
+	 % foo6=foo6+2e-3;
+	 % foo8=foo8+5e-3;
 	 
 	
 	
@@ -205,7 +205,7 @@ switch mode
     case '2'
         
         %WaterFall mode
-        %TODO fix fft so the frequency is shown
+       
      
         L = segLength*Rate;
          %number of samples per segLength
@@ -228,8 +228,13 @@ switch mode
 		
           %ylim([-5e-3,5e-3]);
          subplot(9,2,mic*2,'Position',[.55,.98-0.06*mic,.3,.04])
-          plot(f,2*abs(ft(1:NFFT/2+1)));
-		   set(gca,'XTick',0:2000:15000)
+		 
+		 %TODO only plot freq response upto 10kHz
+		 
+          % plot(f,2*abs(ft(1:NFFT/2+1))); %plot all freq response
+		  freq_lim = 10000;
+		  plot(f(f<freq_lim),abs(ft(f<freq_lim)));
+		   set(gca,'XTick',0:2000:Rate/2)
          ylim([0,1]);
 	
         end
