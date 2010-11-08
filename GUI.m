@@ -88,7 +88,7 @@ Rate = 40000; %Set sample rate here
 
 T=1/Rate; %sample time;
 
-Source_Rate = 10000;
+Source_Rate = Rate;
 
 % [foo1,foo2,foo3,foo4,foo5,foo6,foo7,foo8]=textread(...
     % 'D:\Bert\Acoustics\Receivers\Receivers.txt',...
@@ -243,11 +243,12 @@ switch mode
 		%for one mic
 		%TODO fix source
 			  %	----------------%Plot Source Signal
-		source_offset = 0;
+		source_offset = 0.2; %Source delay in sec
+		
 
 		 subplot(2,1,2,'Position',[0.1,0.4,0.8,0.2])
-        plot(time_Source(round(start*Source_Rate+source_offset+1):round(ending*Source_Rate+source_offset))...
-        ,Source(round(start*Source_Rate+source_offset+1):round(ending*Source_Rate+source_offset)));
+        plot(time_Source(round((start+source_offset)*Source_Rate+1):round((ending+source_offset)*Source_Rate))...
+        ,Source(round((start+source_offset)*Source_Rate+1):round((ending+source_offset)*Source_Rate)));
 		
        % ylim([-10,10]);
 
