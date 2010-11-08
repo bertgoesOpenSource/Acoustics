@@ -226,7 +226,7 @@ switch mode
             Receiver(round(start*Rate+1):round(ending*Rate),mic));
          xlim([start ending])
 		
-          %ylim([-5e-3,5e-3]);
+          ylim([-10e-3,10e-3]);
          subplot(9,2,mic*2,'Position',[.55,.98-0.06*mic,.3,.04])
 		 
 		 %TODO only plot freq response upto 10kHz
@@ -243,12 +243,12 @@ switch mode
 		%for one mic
 		%TODO fix source
 			  %	----------------%Plot Source Signal
-		source_offset = 0.2; %Source delay in sec
+		source_offset = .65; %Source delay in sec
 		
 
 		 subplot(2,1,2,'Position',[0.1,0.4,0.8,0.2])
         plot(time_Source(round((start+source_offset)*Source_Rate+1):round((ending+source_offset)*Source_Rate))...
-        ,Source(round((start+source_offset)*Source_Rate+1):round((ending+source_offset)*Source_Rate)));
+        ,Source(round((start-source_offset)*Source_Rate+1):round((ending-source_offset)*Source_Rate)));
 		
        % ylim([-10,10]);
 
