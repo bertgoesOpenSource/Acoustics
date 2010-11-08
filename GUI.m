@@ -84,11 +84,11 @@ L_Receiver L_Source time Source offsetVal printNum s_time time_Source;
 printNum=0;
 segLength = 0.1; %default Beam pattern's time interval
 
-Rate = 50000; %Set sample rate here
+Rate = 40000; %Set sample rate here
 
 T=1/Rate; %sample time;
 
-Source_Rate = 1000;
+Source_Rate = 10000;
 
 % [foo1,foo2,foo3,foo4,foo5,foo6,foo7,foo8]=textread(...
     % 'D:\Bert\Acoustics\Receivers\Receivers.txt',...
@@ -120,7 +120,7 @@ clear foo8; %better find another way...
 L_Receiver = size(Receiver,1); %Length of receiver.txt, for code efficiency
 time =(0:L_Receiver-1)*T;  %time vector
 time=time';
-time_Source = time'*10;
+time_Source = time';
 s_time = size(time,1); %for code efficiency
  L_Source = size(Source,1);
  offsetVal = 0; %time delay of source signal
@@ -241,6 +241,7 @@ switch mode
 
         % subplot(9,2,17,'Position',[0.1,0.4,0.8,0.1])
 		%for one mic
+		%TODO fix source
 			  %	----------------%Plot Source Signal
 		source_offset = 0;
 
@@ -250,7 +251,7 @@ switch mode
 		
        % ylim([-10,10]);
 
-        xlim([start,ending]);
+        % xlim([start,ending]);
        ylabel('Amplitude')
        xlabel('time (s)')
 		%----------------------Source Signal End
